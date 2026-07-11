@@ -1,10 +1,11 @@
 from fastapi import FastAPI , APIRouter , UploadFile , File , Depends , status 
 from  fastapi.responses import JSONResponse 
 from helpers.Config import get_settings , Settings 
-from controller import DataController ,ProjectController
+from controller import DataController ,ProjectController , ProcessController
 from models import ResponseSignal
 import aiofiles
 import logging
+from .schemes.data import ProcessRequest
 
 logger = logging.getLogger(__name__)
 import aiofiles
@@ -60,3 +61,33 @@ async def uploade(project_id: str, file: UploadFile = File(...), app_settings: S
                     "file_id": file_id
                 }
             )
+
+
+
+@data_route.post('/process/{project_id}')        
+async def process(project_id: str , ProcessRequest: ProcessRequest):
+     
+     process_controller = ProcessController(project_id=project_id)
+
+    # get From the json request 
+     file_id = ProcessRequest.file_id
+     chunk_size = ProcessRequest.chunk_size 
+     overlap_size = ProcessRequest.overlap_size 
+
+
+     file_content = process_controller.get_file_content(file_id)
+
+          
+     file_chunks = process_controller.process_file_content(
+               file_content=file_content ,
+                chunk_size=chunk_size, 
+                overlap_size=overlap_size )
+          
+     if file_chunks == None or len(file_chunks) == 0 : 
+          
+         return JSONResponse(
+              status_code=status.HTTP_400_BAD_REQUEST,
+              content = {
+                   "signal" : ResponseSignal.PIROCESSINGFAILD.value
+              }
+         ) 
