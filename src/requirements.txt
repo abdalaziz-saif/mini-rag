@@ -7,3 +7,4 @@ aiofiles==25.1.0
 pydantic==2.13.4
 langchain==1.3.12
 langchain_docling
+motor==3.7.1
