@@ -1,15 +1,26 @@
-services :
+services:
   mongodb:
     image: mongo:8.3-noble
-    container_name : mongodb
-    ports : 
-    - "27007:27017"
-    volumes :
-    - "./mongodb:/data/db"
+    container_name: mongodb
+
+    ports:
+      - "27007:27017"
+
+    # username & password for db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+
+    volumes:
+      - mongodata:/data/db
+
     networks:
-    - backend
+      - backend
 
     restart: always
 
 networks:
   backend:
+
+volumes:
+  mongodata:
