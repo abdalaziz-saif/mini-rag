@@ -1,4 +1,5 @@
-from controller import BaseController , ProjectController
+from .BaseController import BaseController
+from .ProjectController import ProjectController
 import os 
 from langchain_docling.loader import DoclingLoader 
 from langchain_text_splitters import RecursiveCharacterTextSplitter

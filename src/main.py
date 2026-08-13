@@ -7,7 +7,7 @@ from helpers import get_settings
 app = FastAPI()
 
 # make motor connect directly when startup the app 
-@app.on_evnet('startup') 
+@app.on_event('startup') 
 async def on_start_up():
     settings = get_settings()
     app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URL)

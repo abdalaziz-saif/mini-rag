@@ -3,8 +3,8 @@ from typing import Optional
 from pydantic import BaseModel, Field , validator
 from bson.objectid import ObjectId
 
-class Project_schema(BaseModel):
-    _id  : Optional[ObjectId] 
+class Project(BaseModel):
+    id: Optional[ObjectId] = Field(None, alias="_id")
     project_id : str = Field(...,min_length = 1 )
 
     # validate project_id to be num or letter  
@@ -15,6 +15,17 @@ class Project_schema(BaseModel):
         
         return value
 
+    @classmethod
+    def get_indexes(cls):
+        return [
+            {
+                "key": [
+                    ("project_id", 1)
+                ],
+                "name": "project_id_index_1",
+                "unique": True
+            }
+        ]
+
     class Config:
         arbitrary_types_allowed = True
-    

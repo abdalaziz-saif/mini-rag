@@ -1,0 +1,8 @@
+# Ignore local MongoDB data volume contents
+mongodb/*
+!mongodb/.gitkeep
+
+# Ignore Docker transient files
+*.log
+*.pid
+
