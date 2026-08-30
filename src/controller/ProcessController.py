@@ -15,14 +15,15 @@ class ProcessController(BaseController):
       
     #extract the content of the file using langchain
     def get_file_content(self , file_id) :
-        self.file_path = os.path.join(
-            self.project_path , 
-            file_id
-        )
-
-        loader = DoclingLoader(self.file_path) 
-        return  loader.load()  # the output will be in shape document(text =  , metadata = )
-
+        if file_id :
+            self.file_path = os.path.join(
+                self.project_path , 
+                file_id
+            )
+        
+            loader = DoclingLoader(self.file_path) 
+            return  loader.load()  # the output will be in shape document(text =  , metadata = )
+        return None 
     # split the content to chunks  
     def process_file_content(self , file_content :list , chunk_size : int =100  , overlap_size :int =20):
 

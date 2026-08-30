@@ -1,7 +1,6 @@
-from pydoc import doc
 from typing import Optional
 
-from pydantic import BaseModel , Field 
+from pydantic import BaseModel, Field 
 from bson.objectid import ObjectId
 
 class DataChunk(BaseModel):
@@ -10,6 +9,7 @@ class DataChunk(BaseModel):
     chunk_metadata: dict
     chunk_order: int = Field(..., gt=0)
     chunk_project_id: ObjectId
+    chunk_asset_id: ObjectId
 
     class Config:
         arbitrary_types_allowed = True

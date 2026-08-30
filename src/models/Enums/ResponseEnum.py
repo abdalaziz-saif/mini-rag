@@ -9,4 +9,7 @@ class ResponseSignal(Enum):
     FILE_SIZE_EXCEEDED = "file_size_exceeded"
     FILE_UPLOAD_SUCCESS = "file_upload_success"
     FILE_UPLOAD_FAILED = "file_upload_failed"
-    PROCESSING_FAILED = "file_processing_faild"
+    PROCESSING_FAILED = "file_processing_failed"
+    PROCESSING_SUCCESS = "file_processing_success"
+    FILE_ID_ERROR = "file id is not found"
+    NO_FILES_ERROR = "No files found on database"

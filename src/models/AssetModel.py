@@ -47,11 +47,21 @@ class AssetModel(BaseDataModel):
         ]
 
     async def get_asset_record(self, asset_project_id: str, asset_name: str):
+        project_oid = ObjectId(asset_project_id) if isinstance(asset_project_id, str) else asset_project_id
+        
+        query = {
+            "asset_project_id": project_oid,
+        }
 
-        record = await self.collection.find_one({
-            "asset_project_id": ObjectId(asset_project_id) if isinstance(asset_project_id, str) else asset_project_id,
-            "asset_name": asset_name,
-        })
+        if ObjectId.is_valid(asset_name):
+            query["$or"] = [
+                {"_id": ObjectId(asset_name)},
+                {"asset_name": asset_name}
+            ]
+        else:
+            query["asset_name"] = asset_name
+
+        record = await self.collection.find_one(query)
 
         if record:
             return Asset(**record)

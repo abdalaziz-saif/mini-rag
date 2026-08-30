@@ -10,3 +10,5 @@ langchain_docling
 motor==3.7.1
 langchain_text_splitters
 pymongo==4.17.0
+openai==3.6.0
+cohere==7.1.0

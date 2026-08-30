@@ -5,12 +5,12 @@ from datetime import datetime
 
 class Asset(BaseModel):
     id: Optional[ObjectId] = Field(None, alias="_id")
-    asset_project_id: ObjectId
+    asset_project_id: ObjectId        # note that the asset project_id   is a project._id  not the number that we pass with endpoint 
     asset_type: str = Field(..., min_length=1)
     asset_name: str = Field(..., min_length=1)
     asset_size: int = Field(ge=0, default=None)
     asset_config: dict = Field(default=None)
-    asset_pushed_at: datetime = Field(default=datetime.utcnow)
+    asset_pushed_at: datetime = Field(default_factory=datetime.utcnow)
 
     class Config:
         arbitrary_types_allowed = True
