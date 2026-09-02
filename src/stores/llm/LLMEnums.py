@@ -1,5 +1,9 @@
 from enum import Enum
 
+class LLMENums(Enum):
+    OpenAI = 'openai' 
+    CoHere = 'cohere ' 
+    
 class OpenAIEnums (Enum):
     SYSTEM = "system"
     USER = "user"

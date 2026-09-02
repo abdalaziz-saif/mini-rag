@@ -12,3 +12,4 @@ langchain_text_splitters
 pymongo==4.17.0
 openai==3.6.0
 cohere==7.1.0
+qdrant-client==1.19.0

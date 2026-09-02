@@ -29,5 +29,9 @@ class Settings(BaseSettings):
     GENERATION_DAFAULT_MAX_TOKENS :int
     GENERATION_DAFAULT_TEMPERATURE :float 
 
+    VECTOR_DB_BACKEND : str  
+    VECTOR_DB_PATH: str
+    VECTOR_DB_DISTANCE_METHOD: str 
+
 def get_settings():
     return Settings()
