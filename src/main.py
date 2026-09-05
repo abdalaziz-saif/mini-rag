@@ -1,6 +1,7 @@
 from fastapi import FastAPI , APIRouter 
 from routes import data
 from routes import base
+from routes import nlp
 from motor.motor_asyncio import AsyncIOMotorClient  
 from helpers import get_settings 
 from stores.llm import LLMFactory
@@ -34,3 +35,4 @@ async def on_shutdown():
 # include the base_route in the main app
 app.include_router(base.base_route)
 app.include_router(data.data_route)
+app.include_router(nlp.nlp_route)
