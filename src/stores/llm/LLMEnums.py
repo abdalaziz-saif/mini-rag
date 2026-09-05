@@ -20,4 +20,4 @@ class CoHereEnums(Enum):
 class DocumentTypeEnum(Enum):
     
     QUERY = "query" 
-    Document = "document"
+    DOCUMENT = "document"
